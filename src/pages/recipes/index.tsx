@@ -3,6 +3,7 @@ import Vegetables from "@/components/vegetables";
 import Meats from "@/components/meats";
 import Poultry from "@/components/poultry";
 import Dairy from "@/components/dairy";
+import Seafood from "@/components/seafood";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
@@ -52,6 +53,7 @@ const index: React.FC<indexProps> = () => {
   const [poultry, setPoultry] = useState(false);
   const [data, setData] = useState(null);
   const [dairy, setDairy] = useState(false);
+  const [seafood, setSeafood] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   async function findRecipes(e: React.FormEvent<HTMLFormElement>) {
@@ -80,8 +82,8 @@ const index: React.FC<indexProps> = () => {
       </div>
 
       <form onSubmit={findRecipes} style={{ display: "flex", gap: "1rem" }}>
-        <label htmlFor="vegetables" color>
-          Vegetables &nbsp;
+        <label htmlFor="vegetables" className="has-text-success-dark">
+          Vegetables <i className="fa-solid fa-carrot"></i> &nbsp;
           <input
             id="vegetables"
             type="checkbox"
@@ -90,8 +92,8 @@ const index: React.FC<indexProps> = () => {
           />
         </label>
         {vegetables && <Vegetables setIngredients={setIngredients} />}
-        <label htmlFor="meats">
-          Meats &nbsp;
+        <label htmlFor="meats" className="has-text-danger-dark">
+          Meats <i className="fa-solid fa-steak"></i> &nbsp;
           <input
             id="meats"
             type="checkbox"
@@ -100,8 +102,8 @@ const index: React.FC<indexProps> = () => {
           />
         </label>
         {meats && <Meats setIngredients={setIngredients} />}
-        <label htmlFor="poultry">
-          Poultry &nbsp;
+        <label htmlFor="poultry" className="has-text-warning-dark">
+          Poultry <i className="fa-solid fa-drumstick"></i> &nbsp;
           <input
             id="poultry"
             type="checkbox"
@@ -109,9 +111,10 @@ const index: React.FC<indexProps> = () => {
             onChange={(e) => setPoultry(e.target.checked)}
           />
         </label>
+
         {poultry && <Poultry setIngredients={setIngredients} />}
-        <label htmlFor="dairy">
-          Dairy &nbsp;
+        <label htmlFor="dairy" className="has-text-info-dark">
+          Dairy <i className="fa-solid fa-cheese"></i> &nbsp;
           <input
             id="dairy"
             type="checkbox"
@@ -120,6 +123,17 @@ const index: React.FC<indexProps> = () => {
           />
         </label>
         {dairy && <Dairy setIngredients={setIngredients} />}
+
+        <label htmlFor="seafood" style={{ color: "#AA336A" }}>
+          Seafood <i className="fa-solid fa-fish"></i> &nbsp;
+          <input
+            id="seafood"
+            type="checkbox"
+            name="seafood"
+            onChange={(e) => setSeafood(e.target.checked)}
+          />
+        </label>
+        {seafood && <Seafood setIngredients={setIngredients} />}
         <button className="button is-dark">Find Recipes</button>
       </form>
       <section className="section">

@@ -16,7 +16,7 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
     <div
       style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
     >
-      <label htmlFor="ground_beef">
+      <label htmlFor="ground_beef" className="has-text-danger">
         Ground Beef &nbsp;
         <input
           type="checkbox"
@@ -38,7 +38,7 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
           }}
         />
       </label>
-      <label htmlFor="steak">
+      <label htmlFor="steak" className="has-text-danger">
         Steak &nbsp;
         <input
           type="checkbox"
@@ -60,7 +60,7 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
           }}
         />
       </label>
-      <label htmlFor="chicken">
+      <label htmlFor="chicken" className="has-text-danger">
         Chicken &nbsp;
         <input
           type="checkbox"
@@ -82,7 +82,7 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
           }}
         />
       </label>
-      <label htmlFor="pork">
+      <label htmlFor="pork" className="has-text-danger">
         pork &nbsp;
         <input
           type="checkbox"
@@ -104,7 +104,7 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
           }}
         />
       </label>
-      <label htmlFor="ham">
+      <label htmlFor="ham" className="has-text-danger">
         Ham &nbsp;
         <input
           type="checkbox"
@@ -121,6 +121,72 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
             } else {
               setIngredients((prev) =>
                 prev.filter((ingredient) => ingredient.name !== "ham")
+              );
+            }
+          }}
+        />
+      </label>
+      <label htmlFor="lamb" className="has-text-danger">
+        Lamb &nbsp;
+        <input
+          type="checkbox"
+          name="lamb"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setIngredients((prev) => [
+                ...prev,
+                {
+                  name: "lamb",
+                  checked: true,
+                },
+              ]);
+            } else {
+              setIngredients((prev) =>
+                prev.filter((ingredient) => ingredient.name !== "lamb")
+              );
+            }
+          }}
+        />
+      </label>
+      <label htmlFor="bison" className="has-text-danger">
+        Bison &nbsp;
+        <input
+          type="checkbox"
+          name="bison"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setIngredients((prev) => [
+                ...prev,
+                {
+                  name: "bison",
+                  checked: true,
+                },
+              ]);
+            } else {
+              setIngredients((prev) =>
+                prev.filter((ingredient) => ingredient.name !== "bison")
+              );
+            }
+          }}
+        />
+      </label>
+      <label htmlFor="sausage" className="has-text-danger">
+        Sausage &nbsp;
+        <input
+          type="checkbox"
+          name="sausage"
+          onChange={(e) => {
+            if (e.target.checked) {
+              setIngredients((prev) => [
+                ...prev,
+                {
+                  name: "sausage",
+                  checked: true,
+                },
+              ]);
+            } else {
+              setIngredients((prev) =>
+                prev.filter((ingredient) => ingredient.name !== "sausage")
               );
             }
           }}

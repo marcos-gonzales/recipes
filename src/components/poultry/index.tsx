@@ -16,139 +16,73 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
     <div
       style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
     >
-      <label htmlFor="tilapia">
-        Tilapia &nbsp;
+      <label htmlFor="chicken" style={{ color: "#866409" }}>
+        Chicken &nbsp;
         <input
           type="checkbox"
-          name="tilapia"
+          name="chicken"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "tilapia",
+                  name: "chicken",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "tilapia")
+                prev.filter((ingredient) => ingredient.name !== "chicken")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="tuna">
-        Tuna &nbsp;
+      <label htmlFor="turkey" style={{ color: "#866409" }}>
+        Turkey &nbsp;
         <input
           type="checkbox"
-          name="tuna"
+          name="turkey"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "tuna",
+                  name: "turkey",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "tuna")
+                prev.filter((ingredient) => ingredient.name !== "turkey")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="tuna_steak">
-        Tuna steak &nbsp;
+      <label htmlFor="duck" style={{ color: "#866409" }}>
+        Duck &nbsp;
         <input
           type="checkbox"
-          name="tuna_steak"
+          name="duck"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "tuna_steak",
+                  name: "duck",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "tuna_steak")
+                prev.filter((ingredient) => ingredient.name !== "duck")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="shrimp">
-        Shrimp &nbsp;
-        <input
-          type="checkbox"
-          name="shrimp"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIngredients((prev) => [
-                ...prev,
-                {
-                  name: "shrimp",
-                  checked: true,
-                },
-              ]);
-            } else {
-              setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "shrimp")
-              );
-            }
-          }}
-        />
-      </label>
-      <label htmlFor="salmon">
-        Salmon &nbsp;
-        <input
-          type="checkbox"
-          name="salmon"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIngredients((prev) => [
-                ...prev,
-                {
-                  name: "salmon",
-                  checked: true,
-                },
-              ]);
-            } else {
-              setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "salmon")
-              );
-            }
-          }}
-        />
-      </label>
-      <label htmlFor="cod">
-        Cod &nbsp;
-        <input
-          type="checkbox"
-          name="cod"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIngredients((prev) => [
-                ...prev,
-                {
-                  name: "cod",
-                  checked: true,
-                },
-              ]);
-            } else {
-              setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "cod")
-              );
-            }
-          }}
-        />
-      </label>
-      <label htmlFor="Bass">
+      <label htmlFor="Bass" style={{ color: "#866409" }}>
         Bass &nbsp;
         <input
           type="checkbox"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type indexProps = {
   setIngredients: React.Dispatch<
@@ -16,199 +16,155 @@ const index: React.FC<indexProps> = ({ setIngredients }) => {
     <div
       style={{ display: "flex", flexDirection: "column", marginTop: "2rem" }}
     >
-      <label htmlFor="milk" className="has-text-info">
-        Milk &nbsp;
+      <label htmlFor="tilapia" style={{ color: "#8b1b4f" }}>
+        Tilapia &nbsp;
         <input
           type="checkbox"
-          name="milk"
+          name="tilapia"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "milk",
+                  name: "tilapia",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "milk")
+                prev.filter((ingredient) => ingredient.name !== "tilapia")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="cheese" className="has-text-info">
-        Cheese &nbsp;
+      <label htmlFor="tuna" style={{ color: "#8b1b4f" }}>
+        Tuna &nbsp;
         <input
           type="checkbox"
-          name="cheese"
+          name="tuna"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "cheese",
+                  name: "tuna",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "cheese")
+                prev.filter((ingredient) => ingredient.name !== "tuna")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="eggs" className="has-text-info">
-        Eggs &nbsp;
+      <label htmlFor="tuna_steak" style={{ color: "#8b1b4f" }}>
+        Tuna steak &nbsp;
         <input
           type="checkbox"
-          name="eggs"
+          name="tuna_steak"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "eggs",
+                  name: "tuna_steak",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredients) => ingredients.name !== "eggs")
+                prev.filter((ingredient) => ingredient.name !== "tuna_steak")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="butter" className="has-text-info">
-        Butter &nbsp;
+      <label htmlFor="shrimp" style={{ color: "#8b1b4f" }}>
+        Shrimp &nbsp;
         <input
           type="checkbox"
-          name="butter"
+          name="shrimp"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "butter",
+                  name: "shrimp",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "butter")
+                prev.filter((ingredient) => ingredient.name !== "shrimp")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="yogurt" className="has-text-info">
-        Yogurt &nbsp;
+      <label htmlFor="salmon" style={{ color: "#8b1b4f" }}>
+        Salmon &nbsp;
         <input
           type="checkbox"
-          name="yogurt"
+          name="salmon"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "yogurt",
+                  name: "salmon",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "yogurt")
+                prev.filter((ingredient) => ingredient.name !== "salmon")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="ice_cream" className="has-text-info">
-        Ice Cream &nbsp;
+      <label htmlFor="cod" style={{ color: "#8b1b4f" }}>
+        Cod &nbsp;
         <input
           type="checkbox"
-          name="ice_cream"
+          name="cod"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "ice_cream",
+                  name: "cod",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "ice_cream")
+                prev.filter((ingredient) => ingredient.name !== "cod")
               );
             }
           }}
         />
       </label>
-      <label htmlFor="sour_cream" className="has-text-info">
-        Sour Cream &nbsp;
+      <label htmlFor="Bass" style={{ color: "#8b1b4f" }}>
+        Bass &nbsp;
         <input
           type="checkbox"
-          name="sour_cream"
+          name="Bass"
           onChange={(e) => {
             if (e.target.checked) {
               setIngredients((prev) => [
                 ...prev,
                 {
-                  name: "sour_cream",
+                  name: "Bass",
                   checked: true,
                 },
               ]);
             } else {
               setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "sour_cream")
-              );
-            }
-          }}
-        />
-      </label>
-      <label htmlFor="heavy_cream" className="has-text-info">
-        Heavy Cream &nbsp;
-        <input
-          type="checkbox"
-          name="heavy_cream"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIngredients((prev) => [
-                ...prev,
-                {
-                  name: "heavy_cream",
-                  checked: true,
-                },
-              ]);
-            } else {
-              setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "heavy_cream")
-              );
-            }
-          }}
-        />
-      </label>
-      <label htmlFor="half_and_half" className="has-text-info">
-        Half & Half &nbsp;
-        <input
-          type="checkbox"
-          name="half_and_half"
-          onChange={(e) => {
-            if (e.target.checked) {
-              setIngredients((prev) => [
-                ...prev,
-                {
-                  name: "half_and_half",
-                  checked: true,
-                },
-              ]);
-            } else {
-              setIngredients((prev) =>
-                prev.filter((ingredient) => ingredient.name !== "half_and_half")
+                prev.filter((ingredient) => ingredient.name !== "Bass")
               );
             }
           }}
