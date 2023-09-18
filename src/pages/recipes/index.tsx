@@ -4,56 +4,20 @@ import Meats from "@/components/meats";
 import Poultry from "@/components/poultry";
 import Dairy from "@/components/dairy";
 import Seafood from "@/components/seafood";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import SomethingSpecific from "@/components/something-specific";
 
 type indexProps = {};
 
 const index: React.FC<indexProps> = () => {
-  const [ingredients, setIngredients] = useState([
-    {
-      name: "broccoli",
-      checked: false,
-    },
-    {
-      name: "carrots",
-      checked: false,
-    },
-    {
-      name: "onion",
-      checked: false,
-    },
-    {
-      name: "potato",
-      checked: false,
-    },
-    {
-      name: "spinach",
-      checked: false,
-    },
-    {
-      name: "lettuce",
-      checked: false,
-    },
-    {
-      name: "peas",
-      checked: false,
-    },
-    {
-      name: "ground_beef",
-      checked: false,
-    },
-    {
-      name: "steak",
-      checked: false,
-    },
-  ]);
+  const [ingredients, setIngredients] = useState([]);
+  const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
   const [meats, setMeats] = useState(false);
   const [poultry, setPoultry] = useState(false);
   const [data, setData] = useState(null);
   const [dairy, setDairy] = useState(false);
   const [seafood, setSeafood] = useState(false);
+  const [somethingSpecific, setSomethingSpecific] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   async function findRecipes(e: React.FormEvent<HTMLFormElement>) {
@@ -64,7 +28,7 @@ const index: React.FC<indexProps> = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(ingredients),
+      body: JSON.stringify(ingredients, cuisine),
     });
 
     setData(await response.json());
@@ -76,9 +40,9 @@ const index: React.FC<indexProps> = () => {
       {/* <FontAwesomeIcon icon={faThumbsUp} /> */}
       <div className="title is-6 is-flex" style={{ gap: ".25rem;" }}>
         What ingredients do you have in your fridge?
-        <i className="fa-solid fa-carrot"></i>
-        <i className="fa-solid fa-onion"></i>
-        <i className="fa-solid fa-garlic"></i>
+        <i className="fa-solid fa-carrot has-text-danger"></i>
+        <i className="fa-solid fa-broccoli has-text-success"></i>
+        <i className="fa-solid fa-lemon" style={{ color: "#E4D00A	" }}></i>
       </div>
 
       <form onSubmit={findRecipes} style={{ display: "flex", gap: "1rem" }}>
@@ -134,7 +98,22 @@ const index: React.FC<indexProps> = () => {
           />
         </label>
         {seafood && <Seafood setIngredients={setIngredients} />}
-        <button className="button is-dark">Find Recipes</button>
+
+        <label htmlFor="something_specific" style={{ color: "#FF69B4" }}>
+          Cuisine <i className="fa-solid fa-cauldron"></i> &nbsp;
+          <input
+            id="something_specific"
+            type="checkbox"
+            name="something_specific"
+            onChange={(e) => setSomethingSpecific(e.target.checked)}
+          />
+        </label>
+        {somethingSpecific && (
+          <SomethingSpecific setCuisine={setCuisine} cuisine={cuisine} />
+        )}
+        <button className="button is-dark">
+          <i className="fa-solid fa-plate-utensils"></i> &nbsp; Find Recipes
+        </button>
       </form>
       <section className="section">
         {!data && isLoading ? (

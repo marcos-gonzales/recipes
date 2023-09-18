@@ -25,16 +25,28 @@ export default async function handler(
     })
     .join(", ");
 
+  const cuisine = req.body
+    .filter((cuisine: any) => {
+      if (cuisine.checked) {
+        return cuisine.name;
+      }
+    })
+    .map((cuisine: any) => {
+      return cuisine.name;
+    })
+    .join(", ");
+
   let completion;
 
   async function main() {
     console.log("working");
+    console.log(ingredients);
     completion = await openai.chat.completions.create({
       messages: [
         {
           role: "user",
           content:
-            "write me a a recipe or two using only these ingredients. you can assume i have oil, butter, salt, and pepper and most basic condiments.nothing else. Can you put the response in html and use an article element with the class of 'message is-dark'. have a div with the class of 'message-header' that has a p tag with the recipe title and then closes.after this have a div with the class 'message-body' that lists the steps in their own p tags." +
+            `write me a a recipe or two using only these ingredients. you can assume i have oil, butter, salt, and pepper and most basic condiments.nothing else. Can you put the response in html and use an article element with the class of 'message is-dark'. have a div with the class of 'message-header' that has a p tag with the recipe title and then closes.after this have a div with the class 'message-body' that lists the steps in their own p tags. use the ${cuisine} if any otherwise whatever you think is best` +
             ingredients,
         },
       ],
