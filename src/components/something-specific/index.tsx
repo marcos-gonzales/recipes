@@ -13,6 +13,10 @@ type indexProps = {
   }[];
 };
 
+const hi = () => {
+  console.log("hi");
+};
+
 const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
   async function uncheckAllBoxes(e) {
     let checkboxes = document.querySelectorAll("#cuisine");
