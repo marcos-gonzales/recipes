@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 import Vegetables from "@/components/vegetables";
 import Meats from "@/components/meats";
 import Poultry from "@/components/poultry";
@@ -8,7 +9,14 @@ import SomethingSpecific from "@/components/something-specific";
 
 type indexProps = {};
 
-const index: React.FC<indexProps> = () => {
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/api/ai");
+  const recipes = await res.json();
+  console.log("recipes", recipes);
+  return { props: { recipes } };
+}
+
+const index: React.FC<indexProps> = (props, { recipes }) => {
   const [ingredients, setIngredients] = useState([]);
   const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
@@ -19,6 +27,7 @@ const index: React.FC<indexProps> = () => {
   const [seafood, setSeafood] = useState(false);
   const [somethingSpecific, setSomethingSpecific] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { data: session } = useSession();
 
   async function findRecipes(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,21 +37,32 @@ const index: React.FC<indexProps> = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(ingredients, cuisine),
+      body: JSON.stringify([ingredients, cuisine, session]),
     });
 
     setData(await response.json());
     setIsLoading(false);
   }
-
+  console.log(props);
   return (
     <div className="container is-fluid ">
+      {/* <div>
+        {recipes.recipes.map((recipe) => (
+          <div
+            key={recipe.id}
+            dangerouslySetInnerHTML={{ __html: recipe.data }}
+          ></div>
+        ))}
+      </div> */}
       {/* <FontAwesomeIcon icon={faThumbsUp} /> */}
-      <div className="title is-6 is-flex" style={{ gap: ".25rem;" }}>
+      <div
+        className="title is-6 is-flex"
+        style={{ gap: ".25rem; align-items: center" }}
+      >
         What ingredients do you have in your fridge?
-        <i className="fa-solid fa-carrot has-text-danger"></i>
-        <i className="fa-solid fa-broccoli has-text-success"></i>
-        <i className="fa-solid fa-lemon" style={{ color: "#E4D00A	" }}></i>
+        <i className="fa-solid fa-tomato fa-lg has-text-danger"></i>
+        <i className="fa-solid fa-broccoli fa-lg has-text-success"></i>
+        <i className="fa-solid fa-lemon fa-lg" style={{ color: "#E4D00A	" }}></i>
       </div>
 
       <form onSubmit={findRecipes} style={{ display: "flex", gap: "1rem" }}>

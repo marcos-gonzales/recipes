@@ -32,6 +32,7 @@ export const authOptions = {
             image: session.user.image,
           },
         });
+        return profile;
       }
       // Send properties to the client, like an access_token from a provider.
       session.id = profile.id;
