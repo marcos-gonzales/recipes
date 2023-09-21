@@ -1,22 +1,32 @@
 import React, { useState } from "react";
-import { useSession } from "next-auth/react";
 import Vegetables from "@/components/vegetables";
 import Meats from "@/components/meats";
 import Poultry from "@/components/poultry";
 import Dairy from "@/components/dairy";
 import Seafood from "@/components/seafood";
 import SomethingSpecific from "@/components/something-specific";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { useSession } from "next-auth/react";
 
 type indexProps = {};
 
-export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/ai");
+export async function getServerSideProps(context: any) {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  console.log("session", session.id);
+  const res = await fetch(`http://localhost:3000/api/ai?id=${session.id}`, {
+    method: "get",
+  });
   const recipes = await res.json();
-  console.log("recipes", recipes);
-  return { props: { recipes } };
+  return {
+    props: {
+      recipes: recipes,
+      session: await getServerSession(context.req, context.res, authOptions),
+    },
+  };
 }
 
-const index: React.FC<indexProps> = (props, { recipes }) => {
+const index: React.FC<indexProps> = ({ recipes }) => {
   const [ingredients, setIngredients] = useState([]);
   const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
@@ -29,7 +39,7 @@ const index: React.FC<indexProps> = (props, { recipes }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { data: session } = useSession();
 
-  async function findRecipes(e: React.FormEvent<HTMLFormElement>) {
+  async function aiRecipe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
     let response = await fetch("api/ai", {
@@ -43,18 +53,18 @@ const index: React.FC<indexProps> = (props, { recipes }) => {
     setData(await response.json());
     setIsLoading(false);
   }
-  console.log(props);
+  console.log(recipes);
   return (
     <div className="container is-fluid ">
-      {/* <div>
-        {recipes.recipes.map((recipe) => (
+      <div>
+        {recipes.recipes[0]}
+        {recipes.recipes.recipes.map((recipe: any) => (
           <div
             key={recipe.id}
             dangerouslySetInnerHTML={{ __html: recipe.data }}
           ></div>
         ))}
-      </div> */}
-      {/* <FontAwesomeIcon icon={faThumbsUp} /> */}
+      </div>
       <div
         className="title is-6 is-flex"
         style={{ gap: ".25rem; align-items: center" }}
@@ -65,7 +75,7 @@ const index: React.FC<indexProps> = (props, { recipes }) => {
         <i className="fa-solid fa-lemon fa-lg" style={{ color: "#E4D00A	" }}></i>
       </div>
 
-      <form onSubmit={findRecipes} style={{ display: "flex", gap: "1rem" }}>
+      <form onSubmit={aiRecipe} style={{ display: "flex", gap: "1rem" }}>
         <label htmlFor="vegetables" className="has-text-success-dark">
           Vegetables <i className="fa-solid fa-carrot"></i> &nbsp;
           <input

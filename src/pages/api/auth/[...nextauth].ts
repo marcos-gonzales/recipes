@@ -17,6 +17,7 @@ export const authOptions = {
 
     // ...add more providers here
   ],
+  secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async session({ session, user }) {
       const profile = await prisma.user.findUnique({
@@ -32,6 +33,7 @@ export const authOptions = {
             image: session.user.image,
           },
         });
+        session.id = profile.id;
         return profile;
       }
       // Send properties to the client, like an access_token from a provider.

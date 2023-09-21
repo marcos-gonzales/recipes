@@ -1,13 +1,21 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/db";
 
 type Data = {
   response: any;
+  recipes: any;
 };
 
-const prisma = new PrismaClient();
+type Recipe = {
+  id: number;
+  ingredients: string;
+  data: string;
+  createdAt: Date;
+  cuisine: string;
+  userId: number;
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -72,7 +80,16 @@ export default async function handler(
   }
 
   if (req.method == "GET") {
-    const recipes = await prisma.recipe.findMany();
+    console.log("ai.ts", req.query.id);
+    const recipes = await prisma.user.findFirst({
+      where: {
+        id: Number(req.query.id),
+      },
+      include: {
+        recipes: true,
+      },
+    });
+    console.log("recipes", recipes);
     res.status(200).send({
       recipes: recipes,
     });
