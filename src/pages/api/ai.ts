@@ -43,9 +43,6 @@ export default async function handler(
     let completion;
 
     async function main() {
-      console.log("working");
-      console.log(ingredients);
-      console.log(cuisine);
       completion = await openai.chat.completions.create({
         messages: [
           {
@@ -57,12 +54,10 @@ export default async function handler(
         ],
         model: "gpt-3.5-turbo",
       });
-      console.log(await completion.choices[0].message.content);
       return await completion.choices[0].message.content;
     }
 
     const response = await main();
-    console.log("response", response);
 
     await prisma.recipe.create({
       data: {
@@ -89,7 +84,6 @@ export default async function handler(
         recipes: true,
       },
     });
-    console.log("recipes", recipes);
     res.status(200).send({
       recipes: recipes,
     });

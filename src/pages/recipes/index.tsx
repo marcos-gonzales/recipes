@@ -53,18 +53,8 @@ const index: React.FC<indexProps> = ({ recipes }) => {
     setData(await response.json());
     setIsLoading(false);
   }
-  console.log(recipes);
   return (
     <div className="container is-fluid ">
-      <div>
-        {recipes.recipes[0]}
-        {recipes.recipes.recipes.map((recipe: any) => (
-          <div
-            key={recipe.id}
-            dangerouslySetInnerHTML={{ __html: recipe.data }}
-          ></div>
-        ))}
-      </div>
       <div
         className="title is-6 is-flex"
         style={{ gap: ".25rem; align-items: center" }}
@@ -152,6 +142,14 @@ const index: React.FC<indexProps> = ({ recipes }) => {
           <div dangerouslySetInnerHTML={{ __html: data?.response }} />
         )}
       </section>
+      <div>
+        {recipes.recipes.recipes.map((recipe: any) => (
+          <div
+            key={recipe.id}
+            dangerouslySetInnerHTML={{ __html: recipe.data }}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };
