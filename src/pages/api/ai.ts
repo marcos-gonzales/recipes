@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
 import { prisma } from "@/db";
+import cacheData from "memory-cache";
 
 type Data = {
   response: any;
@@ -54,6 +55,7 @@ export default async function handler(
         ],
         model: "gpt-3.5-turbo",
       });
+      console.log("completion", completion);
       return await completion.choices[0].message.content;
     }
 
