@@ -1,17 +1,45 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
-import { useState } from "react";
-import Input from "@/components/input";
-import { useRouter } from "next/router";
-import Login from "@/components/login";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css"; // Import the CSS
-config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+import { useSession, signIn, signOut } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
-    <div className="container" style={{ width: "33%" }}>
-      <Login />
+    <div className="columns">
+      <div className="column is-half">
+        <Image
+          src="/food.jpg"
+          alt="food"
+          width={0}
+          height={0}
+          sizes="100vh"
+          style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+        />
+      </div>
+      <div className="typewriter">
+        <p className="first">
+          I have chicken, rice, broccoli, carrots, what can i make?
+        </p>
+        <p className="second">
+          I have eggs, lettuce, bone broth, what can i make?
+        </p>
+
+        <p className="third">I have beef, potatoes, onions, what can i make?</p>
+
+        <p className="fourth">
+          I have chicken, rice, broccoli, carrots, what can i make?
+        </p>
+        <button
+          className="button is-dark signin"
+          onClick={() =>
+            signIn(undefined, {
+              callbackUrl: "/recipes",
+            })
+          }
+        >
+          <i className="fa-solid fa-plate-utensils"></i> Find Recipes
+        </button>
+      </div>
     </div>
   );
 }

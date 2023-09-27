@@ -3,3 +3,79 @@
 .bulma-loader-mixin {
     @include loader;
 }
+
+.typewriter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.typewriter p {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+
+
+.typewriter .second {
+    animation: typing 3.5s steps(40, end) 1s backwards,
+    blink-caret .75s step-end infinite 1s backwards;
+}
+
+.typewriter .third {
+    animation: typing 3.5s steps(40, end) 1.5s backwards,
+        blink-caret .75s step-end infinite 1.5s backwards;
+}
+
+.typewriter .fourth {
+    animation: typing 3.5s steps(40, end) 2s backwards,
+        blink-caret .75s step-end infinite 2s backwards;
+}
+
+.signin {
+    display: flex;
+    align-items: center;
+    margin-top: 10%;
+    gap: .5rem;
+    animation: fadeIn 2s ease-in-out 2.5s backwards; 
+}
+
+.rc-pagination  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rc-pagination-total-text {
+    display: none;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes typing {
+  from { width: 0;   }
+  to { width: 100%;}
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: orange; }
+}
+
+@media screen and (max-width: 768px) {
+    .typewriter p {
+        letter-spacing: .10em;
+        font-size: .7rem;
+    }
+}
