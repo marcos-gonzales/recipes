@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch, SetStateAction } from "react";
 
 type indexProps = {
-  setCuisine: React.Dispatch<
-    React.SetStateAction<{
-      name: string;
-      checked: boolean;
-    }>
-  >;
+  setCuisine: Dispatch<SetStateAction<{ name: string; checked: boolean }[]>>;
   cuisine: {
     name: string;
     checked: boolean;

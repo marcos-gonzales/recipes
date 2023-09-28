@@ -37,11 +37,13 @@ export async function getServerSideProps(context: any) {
 
 const Index: React.FC<indexProps> = ({ recipes }) => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-  const [cuisine, setCuisine] = useState({ name: "", checked: false });
+  const [cuisine, setCuisine] = useState([{ name: "", checked: false }]);
   const [vegetables, setVegetables] = useState(false);
   const [meats, setMeats] = useState(false);
   const [poultry, setPoultry] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<{ response: string | null }>({
+    response: null,
+  });
   const [dairy, setDairy] = useState(false);
   const [seafood, setSeafood] = useState(false);
   const [somethingSpecific, setSomethingSpecific] = useState(false);
@@ -212,7 +214,7 @@ const Index: React.FC<indexProps> = ({ recipes }) => {
         {!data && isLoading ? (
           <span className="bulma-loader-mixin"></span>
         ) : (
-          <div dangerouslySetInnerHTML={{ __html: data?.response }} />
+          <div dangerouslySetInnerHTML={{ __html: data?.response || "" }} />
         )}
       </section>
       <div>
