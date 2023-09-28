@@ -13,16 +13,17 @@ type indexProps = {
   }[];
 };
 
-const hi = () => {
-  console.log("hi");
-};
+interface InputElement extends HTMLInputElement {
+  target: any;
+  checked: boolean;
+}
 
 const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
-  async function uncheckAllBoxes(e) {
+  async function uncheckAllBoxes(e: InputElement) {
     let checkboxes = document.querySelectorAll("#cuisine");
     checkboxes.forEach((checkbox) => {
-      if (checkbox.name !== e.target.name) {
-        checkbox.checked = false;
+      if ((checkbox as HTMLInputElement).name !== e.target.name) {
+        (checkbox as HTMLInputElement).checked = false;
       }
     });
   }
@@ -38,7 +39,7 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="peruvian"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "peruvian",
               checked: true,
@@ -53,12 +54,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="indian"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "indian",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -69,12 +69,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="Mexican"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "Mexican",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -85,12 +84,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="thai"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "thai",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -101,12 +99,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="american"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "american",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -117,12 +114,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="greek"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "greek",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -133,12 +129,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="italian"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "italian",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -149,12 +144,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="japanese"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "japanese",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -165,12 +159,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="korean"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "korean",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
@@ -181,12 +174,11 @@ const index: React.FC<indexProps> = ({ setCuisine, cuisine }) => {
           type="checkbox"
           name="french"
           onChange={(e) => {
-            uncheckAllBoxes(e);
+            uncheckAllBoxes(e.target as InputElement);
             setCuisine({
               name: "french",
               checked: true,
             });
-            console.log(cuisine);
           }}
         />
       </label>
