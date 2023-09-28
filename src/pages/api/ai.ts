@@ -2,7 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import OpenAI from "openai";
 import { prisma } from "@/db";
-import cacheData from "memory-cache";
 
 type Data = {
   response: any;
@@ -43,7 +42,7 @@ export default async function handler(
 
     let completion;
 
-    async function main() {
+    let main = async function main() {
       completion = await openai.chat.completions.create({
         messages: [
           {
@@ -57,14 +56,14 @@ export default async function handler(
       });
       console.log("completion", completion);
       return await completion.choices[0].message.content;
-    }
+    };
 
     const response = await main();
 
     await prisma.recipe.create({
       data: {
         ingredients: ingredients,
-        data: response,
+        data: response as string,
         createdAt: new Date(),
         cuisine: cuisine,
         userId: session.id,
@@ -73,6 +72,7 @@ export default async function handler(
 
     const recipe = res.status(200).send({
       response: response,
+      recipes: undefined,
     });
   }
 
@@ -88,6 +88,7 @@ export default async function handler(
     });
     res.status(200).send({
       recipes: recipes,
+      response: undefined,
     });
   }
 }
