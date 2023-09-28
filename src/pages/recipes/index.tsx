@@ -120,7 +120,7 @@ const Index: React.FC<indexProps> = ({ recipes }) => {
           className="title is-6 is-flex"
           style={{ gap: ".25rem; align-items: center" }}
         >
-          What's in your fridge?
+          What&apos;s in your fridge?
           <i className="fa-solid fa-tomato fa-lg has-text-danger"></i>
           <i className="fa-solid fa-broccoli fa-lg has-text-success"></i>
           <i
