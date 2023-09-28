@@ -10,7 +10,15 @@ import Pagination from "rc-pagination";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { useSession } from "next-auth/react";
 
-type indexProps = {};
+type indexProps = {
+  recipes: any;
+  session: any;
+};
+
+interface Ingredient {
+  name: string;
+  checked: boolean;
+}
 
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
@@ -28,7 +36,7 @@ export async function getServerSideProps(context: any) {
 }
 
 const Index: React.FC<indexProps> = ({ recipes }) => {
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
   const [meats, setMeats] = useState(false);
@@ -59,12 +67,12 @@ const Index: React.FC<indexProps> = ({ recipes }) => {
     );
   };
 
-  const PaginationChange = (page, pageSize) => {
+  const PaginationChange = (page: any, pageSize: any) => {
     setCurrent(page);
     setSize(pageSize);
   };
 
-  const PrevNextArrow = (current, type, originalElement) => {
+  const PrevNextArrow = (current: any, type: any, originalElement: any) => {
     if (type === "prev") {
       return (
         <button>
@@ -213,7 +221,7 @@ const Index: React.FC<indexProps> = ({ recipes }) => {
             Previous Recipes
           </h2>
           <div>
-            {getData(current, size).map((data, index) => {
+            {getData(current, size).map((data: any, index: any) => {
               return (
                 <div
                   key={data.id}
