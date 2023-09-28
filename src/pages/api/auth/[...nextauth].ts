@@ -19,7 +19,7 @@ export const authOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
-    async session({ session, user }) {
+    async session({ session, user }: any) {
       const profile = await prisma.user.findUnique({
         where: {
           email: session.user.email,
