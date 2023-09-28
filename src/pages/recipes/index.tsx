@@ -27,7 +27,7 @@ export async function getServerSideProps(context: any) {
   };
 }
 
-const index: React.FC<indexProps> = ({ recipes }) => {
+const Index: React.FC<indexProps> = ({ recipes }) => {
   const [ingredients, setIngredients] = useState([]);
   const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
@@ -240,4 +240,4 @@ const index: React.FC<indexProps> = ({ recipes }) => {
     </div>
   );
 };
-export default index;
+export default Index;
