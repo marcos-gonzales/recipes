@@ -37,7 +37,7 @@ export async function getServerSideProps(context: any) {
 
 const Index: React.FC<indexProps> = ({ recipes }) => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-  const [cuisine, setCuisine] = useState([{ name: "", checked: false }]);
+  const [cuisine, setCuisine] = useState({ name: "", checked: false });
   const [vegetables, setVegetables] = useState(false);
   const [meats, setMeats] = useState(false);
   const [poultry, setPoultry] = useState(false);

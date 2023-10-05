@@ -1,11 +1,11 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 
 type indexProps = {
-  setCuisine: Dispatch<SetStateAction<{ name: string; checked: boolean }[]>>;
+  setCuisine: Dispatch<SetStateAction<{ name: string; checked: boolean }>>;
   cuisine: {
     name: string;
     checked: boolean;
-  }[];
+  };
 };
 
 interface InputElement extends HTMLInputElement {
