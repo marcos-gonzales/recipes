@@ -23,7 +23,11 @@ interface Ingredient {
 export async function getServerSideProps(context: any) {
   const session = await getServerSession(context.req, context.res, authOptions);
   console.log("session", session.id);
-  const res = await fetch(`http://localhost:3000/api/ai?id=${session.id}`, {
+  const url =
+    process.env.ENVIRONMENT == "local"
+      ? "http://localhost:3000"
+      : "https://recipe-ai.vercel.app";
+  const res = await fetch(`${url}/api/ai?id=${session.id}`, {
     method: "get",
   });
   const recipes = await res.json();
