@@ -26,7 +26,7 @@ export async function getServerSideProps(context: any) {
   const url =
     process.env.ENVIRONMENT == "local"
       ? "http://localhost:3000"
-      : "https://recipe-ai.vercel.app";
+      : "https://recipes-nwwui9odf-marcos-gonzales.vercel.app/";
   const res = await fetch(`${url}/api/ai?id=${session.id}`, {
     method: "get",
   });
