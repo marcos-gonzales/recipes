@@ -17,7 +17,6 @@ export const authOptions = {
 
     // ...add more providers here
   ],
-  secret: process.env.NEXTAUTH_SECRET as string,
   callbacks: {
     async session({ session, user }: any) {
       const profile = await prisma.user.findUnique({
@@ -41,5 +40,6 @@ export const authOptions = {
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET as string,
 };
 export default NextAuth(authOptions);
